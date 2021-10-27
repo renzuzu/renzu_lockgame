@@ -1,6 +1,6 @@
 local open = false
 local done = false
-
+local result = nil
 RegisterNUICallback('close', function(data, cb)
     Wait(200)
     open = false
@@ -8,6 +8,7 @@ RegisterNUICallback('close', function(data, cb)
     SetNuiFocus(false,false)
     SetNuiFocusKeepInput(false)
     done = true
+    result = data.result or false
     Wait(2000)
     done = false
 end)
@@ -48,11 +49,13 @@ function CreateGame(level,option)
             end
         end
     end)
-    while not done do Wait(100) end
+    while result == nil do Wait(100) end
     local player = PlayerPedId()
     ClearPedTasks(player)
     FreezeEntityPosition(PlayerPedId(),false)
-    return done
+    local res = result
+    result = nil
+    return res
 end
 
 exports('CreateGame', function(seconds,fa,o)

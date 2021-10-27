@@ -45,7 +45,7 @@ function setStatus(newStatus) {
 			$("#notch").hide();
 			$("body").addClass("next");
 			$("#shackle").addClass("unlock");
-			close()
+			close(true)
 			setTimeout(function() {
 				// setLevel(level + 1);
 				// setStatus("start");
@@ -104,11 +104,11 @@ function step() {
 	window.requestAnimationFrame(step);
 }
 
-function close() {
+function close(result) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", 'https://renzu_lockgame/close', true);
 	xhr.setRequestHeader('Content-Type', 'application/json');
-	xhr.send(JSON.stringify({}));
+	xhr.send(JSON.stringify({result:result}));
 }
 window.requestAnimationFrame(step);
 window.addEventListener("mousedown", click);
