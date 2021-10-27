@@ -4,33 +4,10 @@ notchWidth = 0.1;
 linePosition = 0
 notchPosition = 0
 clockwise = 0
-colors = {
-	green: {
-		//body: "hsl(168, 75%, 42%)",
-		lock: "hsl(210, 61%, 18%)"
-	},
-	violet: {
-		//body: "hsl(267, 35%, 39%)",
-		lock: "hsl(220, 86%, 11%)"
-	},
-	orange: {
-		//body: "hsl(24, 62%, 53%)",
-		lock: "hsl(35, 20%, 12%)"
-	},
-	blue: {
-		//body: "hsl(186, 85%, 37%)",
-		lock: "hsl(32, 67%, 8%)"
-	},
-	olive: {
-		//body: "hsl(55, 16%, 41%)",
-		lock: "hsl(0, 0%, 0%)"
-	}
-};
 //end config 
 
-function setColor(color) {	
-	//$("body").css({"background": colors[color].body});
-	$("#shackle, #lock").css({"border-color": colors[color].lock});
+function setColor(color) {
+	$("#shackle, #lock").css({"border-color": 'rgb(44 52 66)'});
 }
 function newNotch() {
 	notchPosition = (((Math.random() * 0.75 * Math.PI) + 0.25 * Math.PI) * ((clockwise * 2) - 1)) + linePosition;
@@ -89,7 +66,6 @@ function setCount(newCount) {
 function setLevel(newLevel) {
 	level = newLevel;
 	$("#level").text(level);
-	window.localStorage.setItem("level", level);
 }
 function click() {
 	switch (status) {
