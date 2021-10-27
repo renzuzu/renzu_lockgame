@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport">
+        <title>Renzu LockGame</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body id="loadingbar" style="overflow: hidden;display: none;">
+      <section id="label">
+        <div>Level: <span id="level"></span></div>
+      </section>
+      <section id="padlock" style="align-items: center;
+      position: absolute;
+      left: 40%;">
+        <div id="shackle"></div>
+        <div>
+          <div id="notch-dial" class="dial">
+            <div id="notch" class="appear-a"></div>
+          </div>
+          <div id="line-dial" class="dial">
+            <div id="line"></div>
+          </div>
+        </div>
+        <div id="lock"></div>
+      </section>
+      <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script src="script.js" crossorigin="anonymous"></script>
+    </body>
+</html>
