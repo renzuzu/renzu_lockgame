@@ -1,8 +1,8 @@
 # renzu_lockgame
 # Simple Lockpicking Game
 
-
-`   
+# sample
+```
     local options = {
         dict = "veh@break_in@0h@p_m_one@",
         name = "low_force_entry_ds",
@@ -15,5 +15,4 @@
     else
         print("try again later")
     end
- `
-
+```
