@@ -122,13 +122,16 @@ var current = undefined
 window.addEventListener('message', function (table) {
 	let event = table.data;
 	if (event.type == 'create') {
-	document.getElementById("loadingbar").style.display = 'block';
-	setLevel(event.table.level || 10)
-	setStatus("start");
+		if (event.table.hideshackle) {
+			document.getElementById("shackle").style.display = 'none';
+		}
+		document.getElementById("loadingbar").style.display = 'block';
+		setLevel(event.table.level || 10)
+		setStatus("start");
 	}
 	if (event.type == 'reset') {
-	document.getElementById("loadingbar").style.display = 'none';
-	window.location.reload(false);
+		document.getElementById("loadingbar").style.display = 'none';
+		window.location.reload(false);
 	}
 });
 

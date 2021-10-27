@@ -13,16 +13,17 @@ RegisterNUICallback('close', function(data, cb)
     done = false
 end)
 
-function CreateGame(level,option)
+function CreateGame(level,option, hide)
     if option == nil then 
         option = {
             dict = "veh@break_in@0h@p_m_one@",
             name = "low_force_entry_ds",
-            flag = 1,
+            flag = 0
         } 
     end
     local t = {
-        level = level
+        level = level,
+        hideshackle = hide or false
     }
     SetNuiFocus(true,false)
     local playinganimation = false
@@ -45,21 +46,25 @@ function CreateGame(level,option)
                 RequestAnimDict( option.dict )
                 local player = PlayerPedId()
                 while not HasAnimDictLoaded(option.dict) do Citizen.Wait(0) end
-                while not done do Wait(1000) TaskPlayAnim(player,option.dict, option.name, 1.0, -1.0, -1, 0, 1, true, true, true) end
+                while result == nil do Wait(1000) TaskPlayAnim(player,option.dict, option.name, 1.0, -1.0, -1, option.flag, 1, true, true, true) end
             end
         end
     end)
     while result == nil do Wait(100) end
+    Wait(1500)
     local player = PlayerPedId()
-    ClearPedTasks(player)
     FreezeEntityPosition(PlayerPedId(),false)
     local res = result
     result = nil
+    done = true
+    ClearPedTasks(player)
+    Wait(500)
+    done = false
     return res
 end
 
-exports('CreateGame', function(seconds,fa,o)
-    return CreateGame(seconds,fa,o)
+exports('CreateGame', function(seconds,fa,o,hide)
+    return CreateGame(seconds,fa,o,hide)
 end)
 
 RegisterCommand('lockgame', function(source, args, rawCommand) -- demo
