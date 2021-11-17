@@ -46,7 +46,7 @@ function CreateGame(level,option, hide)
                 RequestAnimDict( option.dict )
                 local player = PlayerPedId()
                 while not HasAnimDictLoaded(option.dict) do Citizen.Wait(0) end
-                while result == nil do Wait(1000) TaskPlayAnim(player,option.dict, option.name, 1.0, -1.0, -1, option.flag, 1, true, true, true) end
+                while result == nil do Wait(1000) TaskPlayAnim(player,option.dict, option.name, 2.0, 2.0, -1, option.flag, 1, false, false, false) end
             end
         end
     end)
